@@ -13,6 +13,7 @@ from DE import EAresult
 
 from numpy.random import seed, permutation, uniform, randint
 from scipy.optimize import minimize
+from scipy import optimize 
 import numpy as np
 
 import SHADE
