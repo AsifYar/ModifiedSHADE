@@ -146,7 +146,7 @@ def apply_localsearch(name, method, fitness_fun, bounds, current_best, current_b
     upper = bounds[0][1]
 
     if method == 'grad':
-        res_obj = minimize(fun= fitness_fun, x0=current_best , args=(), method='L-BFGS-B', 'maxfun': maxevals ,  options= {  'disp': False})
+        res_obj = minimize(fun= fitness_fun, x0=current_best , args=(), method='L-BFGS-B',   options= {  'maxfun': maxevals , 'disp': False})
         
         sol = res_obj.x
         fit = res_obj.fun.item()
