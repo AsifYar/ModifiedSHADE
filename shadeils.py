@@ -136,7 +136,7 @@ def get_improvement(alg_name, before, after):
 
 SR_global_MTS = []
 SR_MTS = []
-
+fprime = lambda x: optimize.approx_fprime(x, f, 0.01)
 def apply_localsearch(name, method, fitness_fun, bounds, current_best, current_best_fitness, maxevals, fid , population , totalevals):
     global SR_MTS
     global SR_global_MTS
@@ -145,7 +145,7 @@ def apply_localsearch(name, method, fitness_fun, bounds, current_best, current_b
     upper = bounds[0][1]
 
     if method == 'grad':
-        res_obj = minimize(fun= fitness_fun, x0=current_best , method='Newton-CG' , jac=None, hess=None, hessp=None, tol=None, callback=None, bounds=bounds, options= { 'maxiter': maxevals , 'disp': False})
+        res_obj = minimize(fun= fitness_fun, x0=current_best , method='Newton-CG' , jac=fprime, hess=None, hessp=None, tol=None, callback=None, bounds=bounds, options= { 'maxiter': maxevals , 'disp': False})
         
         sol = res_obj.x
         fit = res_obj.fun.item()
