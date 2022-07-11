@@ -147,13 +147,12 @@ def apply_localsearch(name, method, fitness_fun, bounds, current_best, current_b
     upper = bounds[0][1]
 
     if method == 'grad':
-        # res_obj = minimize(fun= fitness_fun, x0=current_best , method='L-BFGS-B',  approx_grad=1, bounds=bounds, options= {  'maxfun': maxevals , 'disp': False})
-        # sol = res_obj.x
-        # fit = res_obj.fun.item()
-        # funcalls = res_obj.nfev
+        res_obj = minimize(fun= fitness_fun, x0=current_best , method='Powell', bounds=bounds, options= {  'maxfun': maxevals , 'disp': False})
+        sol = res_obj.x
+        fit = res_obj.fun.item()
+        funcalls = res_obj.nfev
         
-        sol, fit, info = fmin_l_bfgs_b(fitness_fun, x0=current_best, approx_grad=1, bounds=bounds, maxfun=maxevals, disp=False)
-        funcalls = info['funcalls']
+
     elif method == 'mts':
 #        import ipdb
 #        ipdb.set_trace()
